@@ -362,14 +362,15 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 4. SHOOTS / PORTFOLIO HUB (КАРУСЕЛЬ С ЛИСТАНИЕМ И ФИЛЬТРАМИ) -->
+  <!-- 4. SHOOTS / PORTFOLIO HUB -->
+  <!-- Desktop: Clean 3-Column Grid | Mobile: Swipeable Touch Carousel -->
   <!-- ========================================================================= -->
-  <section id="portfolio" class="py-24 md:py-36 px-4 md:px-8 max-w-7xl mx-auto border-t border-brand-border/60">
+  <section id="portfolio" class="py-20 md:py-28 px-4 md:px-8 max-w-7xl mx-auto border-t border-brand-border/60">
     
-    <!-- Section Header with Compact Tabs and Navigation Arrows -->
+    <!-- Section Header with Compact Filter Tabs and Mobile Navigation -->
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
       <div>
-        <div class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-brand-bronze font-semibold mb-3">
+        <div class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-brand-bronze font-semibold mb-2">
           <i data-lucide="layers" class="w-3.5 h-3.5"></i>
           <span>Портфолио & Серии</span>
         </div>
@@ -377,11 +378,12 @@
           Избранные съёмки & Проекты
         </h2>
         <p class="text-xs sm:text-sm text-brand-muted mt-2">
-          Листайте съёмки горизонтально. Кликните на карточку, чтобы открыть серию кадров.
+          <span class="md:hidden">Листайте серии свайпом или кликните на карточку.</span>
+          <span class="hidden md:inline">Кликните на карточку любой съёмки, чтобы открыть полную серию кадров.</span>
         </p>
       </div>
 
-      <div class="flex flex-wrap items-center gap-4">
+      <div class="flex items-center gap-4">
         <!-- Segmented Filter Tabs -->
         <div class="inline-flex items-center gap-1 p-1 rounded-full bg-brand-card border border-brand-border overflow-x-auto max-w-full">
           <button onclick="filterShoots('all')" class="tab-btn active px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-luxury" data-filter="all">
@@ -398,37 +400,37 @@
           </button>
         </div>
 
-        <!-- Carousel Left/Right Buttons -->
-        <div class="flex items-center gap-2">
-          <button onclick="scrollShootsCarousel(-1)" aria-label="Предыдущие съёмки" class="w-10 h-10 rounded-full bg-brand-surface hover:bg-brand-creme hover:text-brand-black border border-brand-border flex items-center justify-center transition-luxury text-white shadow-md active:scale-95">
-            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        <!-- Mobile-Only Carousel Buttons (Hidden on desktop where grid is used) -->
+        <div class="flex md:hidden items-center gap-2 shrink-0">
+          <button onclick="scrollShootsCarousel(-1)" aria-label="Предыдущие съёмки" class="w-9 h-9 rounded-full bg-brand-surface hover:bg-brand-creme hover:text-brand-black border border-brand-border flex items-center justify-center transition-luxury text-white shadow-md active:scale-95">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
           </button>
-          <button onclick="scrollShootsCarousel(1)" aria-label="Следующие съёмки" class="w-10 h-10 rounded-full bg-brand-surface hover:bg-brand-creme hover:text-brand-black border border-brand-border flex items-center justify-center transition-luxury text-white shadow-md active:scale-95">
-            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          <button onclick="scrollShootsCarousel(1)" aria-label="Следующие съёмки" class="w-9 h-9 rounded-full bg-brand-surface hover:bg-brand-creme hover:text-brand-black border border-brand-border flex items-center justify-center transition-luxury text-white shadow-md active:scale-95">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Shoots Carousel Track (Horizontal Swipable / Scrollable) -->
+    <!-- Shoots Container: Mobile is swipeable track, Desktop is balanced 3-column grid -->
     <div class="relative">
-      <div id="shootsTrack" class="flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-3 px-1 scroll-smooth">
+      <div id="shootsTrack" class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible scrollbar-none snap-x snap-mandatory py-2 px-1 scroll-smooth">
 
         <!-- ITEM 1: Brand / Lookbook (Shoot index 0) -->
-        <div class="shoot-card group cursor-pointer min-w-[85vw] sm:min-w-[340px] md:min-w-[380px] lg:min-w-[390px] shrink-0 snap-start" data-category="brands" onclick="openShootLightbox(0)">
-          <div class="double-bezel">
-            <div class="double-bezel-inner relative aspect-[3/4] overflow-hidden">
+        <div class="shoot-card group cursor-pointer w-[78vw] sm:w-[320px] md:w-auto shrink-0 md:shrink snap-start" data-category="brands" onclick="openShootLightbox(0)">
+          <div class="double-bezel h-full">
+            <div class="double-bezel-inner relative aspect-[4/5] overflow-hidden">
               <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" alt="Съемка бренда одежды" class="w-full h-full object-cover group-hover:scale-105 transition-luxury duration-700" loading="lazy">
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-luxury flex flex-col justify-end p-6">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-brand-black/30 to-transparent opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-luxury flex flex-col justify-end p-5 sm:p-6">
                 <span class="text-[10px] uppercase tracking-widest text-brand-bronze font-semibold">Контент для брендов</span>
-                <h3 class="font-serif text-2xl text-white font-normal mt-1">LOOKBOOK FW — MIRA</h3>
-                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2">Съемка капсульной коллекции одежды: геометрия линий, премиальный свет.</p>
-                <div class="mt-4 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
-                  <span>Листать серию (3 фото)</span>
+                <h3 class="font-serif text-xl sm:text-2xl text-white font-normal mt-1">LOOKBOOK FW — MIRA</h3>
+                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2 font-light">Съемка капсульной коллекции одежды: геометрия линий, премиальный свет.</p>
+                <div class="mt-3 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
+                  <span>Смотреть серию (3 фото)</span>
                   <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </div>
               </div>
-              <div class="absolute top-4 right-4 bg-brand-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
+              <div class="absolute top-3.5 right-3.5 bg-brand-black/70 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
                 <i data-lucide="images" class="w-3 h-3 text-brand-bronze"></i>
                 <span>3 кадра</span>
               </div>
@@ -437,20 +439,20 @@
         </div>
 
         <!-- ITEM 2: Expert / Personal Brand (Shoot index 1) -->
-        <div class="shoot-card group cursor-pointer min-w-[85vw] sm:min-w-[340px] md:min-w-[380px] lg:min-w-[390px] shrink-0 snap-start" data-category="experts" onclick="openShootLightbox(1)">
-          <div class="double-bezel">
-            <div class="double-bezel-inner relative aspect-[3/4] overflow-hidden">
+        <div class="shoot-card group cursor-pointer w-[78vw] sm:w-[320px] md:w-auto shrink-0 md:shrink snap-start" data-category="experts" onclick="openShootLightbox(1)">
+          <div class="double-bezel h-full">
+            <div class="double-bezel-inner relative aspect-[4/5] overflow-hidden">
               <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Экспертная фотосессия" class="w-full h-full object-cover group-hover:scale-105 transition-luxury duration-700" loading="lazy">
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-luxury flex flex-col justify-end p-6">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-brand-black/30 to-transparent opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-luxury flex flex-col justify-end p-5 sm:p-6">
                 <span class="text-[10px] uppercase tracking-widest text-brand-bronze font-semibold">Экспертный визуал</span>
-                <h3 class="font-serif text-2xl text-white font-normal mt-1">CEO & Инвестор</h3>
-                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2">Имиджевый контент для сайта, СМИ и экспертного телеграм-канала.</p>
-                <div class="mt-4 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
-                  <span>Листать серию (3 фото)</span>
+                <h3 class="font-serif text-xl sm:text-2xl text-white font-normal mt-1">CEO & Инвестор</h3>
+                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2 font-light">Имиджевый контент для сайта, СМИ и экспертного телеграм-канала.</p>
+                <div class="mt-3 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
+                  <span>Смотреть серию (3 фото)</span>
                   <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </div>
               </div>
-              <div class="absolute top-4 right-4 bg-brand-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
+              <div class="absolute top-3.5 right-3.5 bg-brand-black/70 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
                 <i data-lucide="images" class="w-3 h-3 text-brand-bronze"></i>
                 <span>3 кадра</span>
               </div>
@@ -459,20 +461,20 @@
         </div>
 
         <!-- ITEM 3: Fashion / Editorial (Shoot index 2) -->
-        <div class="shoot-card group cursor-pointer min-w-[85vw] sm:min-w-[340px] md:min-w-[380px] lg:min-w-[390px] shrink-0 snap-start" data-category="fashion" onclick="openShootLightbox(2)">
-          <div class="double-bezel">
-            <div class="double-bezel-inner relative aspect-[3/4] overflow-hidden">
+        <div class="shoot-card group cursor-pointer w-[78vw] sm:w-[320px] md:w-auto shrink-0 md:shrink snap-start" data-category="fashion" onclick="openShootLightbox(2)">
+          <div class="double-bezel h-full">
+            <div class="double-bezel-inner relative aspect-[4/5] overflow-hidden">
               <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Fashion съемка" class="w-full h-full object-cover group-hover:scale-105 transition-luxury duration-700" loading="lazy">
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-luxury flex flex-col justify-end p-6">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-brand-black/30 to-transparent opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-luxury flex flex-col justify-end p-5 sm:p-6">
                 <span class="text-[10px] uppercase tracking-widest text-brand-bronze font-semibold">Fashion & Арт</span>
-                <h3 class="font-serif text-2xl text-white font-normal mt-1">GOLDEN HOUR</h3>
-                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2">Кинематографичная серия портретов с теплым естественным светом.</p>
-                <div class="mt-4 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
-                  <span>Листать серию (3 фото)</span>
+                <h3 class="font-serif text-xl sm:text-2xl text-white font-normal mt-1">GOLDEN HOUR</h3>
+                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2 font-light">Кинематографичная серия портретов с теплым естественным светом.</p>
+                <div class="mt-3 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
+                  <span>Смотреть серию (3 фото)</span>
                   <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </div>
               </div>
-              <div class="absolute top-4 right-4 bg-brand-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
+              <div class="absolute top-3.5 right-3.5 bg-brand-black/70 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
                 <i data-lucide="images" class="w-3 h-3 text-brand-bronze"></i>
                 <span>3 кадра</span>
               </div>
@@ -481,20 +483,20 @@
         </div>
 
         <!-- ITEM 4: Brand / Cosmetics (Shoot index 3) -->
-        <div class="shoot-card group cursor-pointer min-w-[85vw] sm:min-w-[340px] md:min-w-[380px] lg:min-w-[390px] shrink-0 snap-start" data-category="brands" onclick="openShootLightbox(3)">
-          <div class="double-bezel">
-            <div class="double-bezel-inner relative aspect-[3/4] overflow-hidden">
+        <div class="shoot-card group cursor-pointer w-[78vw] sm:w-[320px] md:w-auto shrink-0 md:shrink snap-start" data-category="brands" onclick="openShootLightbox(3)">
+          <div class="double-bezel h-full">
+            <div class="double-bezel-inner relative aspect-[4/5] overflow-hidden">
               <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Косметический кампейн" class="w-full h-full object-cover group-hover:scale-105 transition-luxury duration-700" loading="lazy">
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-luxury flex flex-col justify-end p-6">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-brand-black/30 to-transparent opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-luxury flex flex-col justify-end p-5 sm:p-6">
                 <span class="text-[10px] uppercase tracking-widest text-brand-bronze font-semibold">Контент для брендов</span>
-                <h3 class="font-serif text-2xl text-white font-normal mt-1">BOTANICAL AURA</h3>
-                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2">Кампейн для бьюти-бренда: текстуры, эстетика чистоты и ухода.</p>
-                <div class="mt-4 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
-                  <span>Листать серию (3 фото)</span>
+                <h3 class="font-serif text-xl sm:text-2xl text-white font-normal mt-1">BOTANICAL AURA</h3>
+                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2 font-light">Кампейн для бьюти-бренда: текстуры, эстетика чистоты и ухода.</p>
+                <div class="mt-3 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
+                  <span>Смотреть серию (3 фото)</span>
                   <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </div>
               </div>
-              <div class="absolute top-4 right-4 bg-brand-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
+              <div class="absolute top-3.5 right-3.5 bg-brand-black/70 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
                 <i data-lucide="images" class="w-3 h-3 text-brand-bronze"></i>
                 <span>3 кадра</span>
               </div>
@@ -503,20 +505,20 @@
         </div>
 
         <!-- ITEM 5: Expert / Psychologist & Coach (Shoot index 4) -->
-        <div class="shoot-card group cursor-pointer min-w-[85vw] sm:min-w-[340px] md:min-w-[380px] lg:min-w-[390px] shrink-0 snap-start" data-category="experts" onclick="openShootLightbox(4)">
-          <div class="double-bezel">
-            <div class="double-bezel-inner relative aspect-[3/4] overflow-hidden">
+        <div class="shoot-card group cursor-pointer w-[78vw] sm:w-[320px] md:w-auto shrink-0 md:shrink snap-start" data-category="experts" onclick="openShootLightbox(4)">
+          <div class="double-bezel h-full">
+            <div class="double-bezel-inner relative aspect-[4/5] overflow-hidden">
               <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80" alt="Фотосессия эксперта" class="w-full h-full object-cover group-hover:scale-105 transition-luxury duration-700" loading="lazy">
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-luxury flex flex-col justify-end p-6">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-brand-black/30 to-transparent opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-luxury flex flex-col justify-end p-5 sm:p-6">
                 <span class="text-[10px] uppercase tracking-widest text-brand-bronze font-semibold">Экспертный визуал</span>
-                <h3 class="font-serif text-2xl text-white font-normal mt-1">Коуч & Ментор</h3>
-                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2">Создание теплого визуала для прогревов, рилс и ленты соцсетей.</p>
-                <div class="mt-4 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
-                  <span>Листать серию (3 фото)</span>
+                <h3 class="font-serif text-xl sm:text-2xl text-white font-normal mt-1">Коуч & Ментор</h3>
+                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2 font-light">Создание теплого визуала для прогревов, рилс и ленты соцсетей.</p>
+                <div class="mt-3 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
+                  <span>Смотреть серию (3 фото)</span>
                   <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </div>
               </div>
-              <div class="absolute top-4 right-4 bg-brand-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
+              <div class="absolute top-3.5 right-3.5 bg-brand-black/70 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
                 <i data-lucide="images" class="w-3 h-3 text-brand-bronze"></i>
                 <span>3 кадра</span>
               </div>
@@ -525,20 +527,20 @@
         </div>
 
         <!-- ITEM 6: Fashion / Noir Studio (Shoot index 5) -->
-        <div class="shoot-card group cursor-pointer min-w-[85vw] sm:min-w-[340px] md:min-w-[380px] lg:min-w-[390px] shrink-0 snap-start" data-category="fashion" onclick="openShootLightbox(5)">
-          <div class="double-bezel">
-            <div class="double-bezel-inner relative aspect-[3/4] overflow-hidden">
+        <div class="shoot-card group cursor-pointer w-[78vw] sm:w-[320px] md:w-auto shrink-0 md:shrink snap-start" data-category="fashion" onclick="openShootLightbox(5)">
+          <div class="double-bezel h-full">
+            <div class="double-bezel-inner relative aspect-[4/5] overflow-hidden">
               <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80" alt="Черно-белый портрет" class="w-full h-full object-cover group-hover:scale-105 transition-luxury duration-700" loading="lazy">
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-luxury flex flex-col justify-end p-6">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-brand-black/30 to-transparent opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-luxury flex flex-col justify-end p-5 sm:p-6">
                 <span class="text-[10px] uppercase tracking-widest text-brand-bronze font-semibold">Fashion & Арт</span>
-                <h3 class="font-serif text-2xl text-white font-normal mt-1">NOIR MONOCHROME</h3>
-                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2">Авторская черно-белая серия: глубокая светотеневая графика.</p>
-                <div class="mt-4 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
-                  <span>Листать серию (3 фото)</span>
+                <h3 class="font-serif text-xl sm:text-2xl text-white font-normal mt-1">NOIR MONOCHROME</h3>
+                <p class="text-xs text-brand-muted mt-1.5 line-clamp-2 font-light">Авторская черно-белая серия: глубокая светотеневая графика.</p>
+                <div class="mt-3 inline-flex items-center gap-1.5 text-xs text-brand-creme font-medium">
+                  <span>Смотреть серию (3 фото)</span>
                   <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </div>
               </div>
-              <div class="absolute top-4 right-4 bg-brand-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
+              <div class="absolute top-3.5 right-3.5 bg-brand-black/70 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-white/90 border border-white/10 uppercase tracking-wider flex items-center gap-1.5">
                 <i data-lucide="images" class="w-3 h-3 text-brand-bronze"></i>
                 <span>3 кадра</span>
               </div>
@@ -548,8 +550,8 @@
 
       </div>
 
-      <!-- Hint below carousel -->
-      <div class="flex items-center justify-between mt-5 text-xs text-brand-muted">
+      <!-- Mobile-only Hint below carousel -->
+      <div class="flex md:hidden items-center justify-between mt-4 text-xs text-brand-muted">
         <div class="flex items-center gap-2">
           <i data-lucide="move-horizontal" class="w-4 h-4 text-brand-bronze"></i>
           <span>Свайпайте вбок или используйте стрелки</span>
@@ -862,11 +864,12 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 7. REVIEWS CAROUSEL (ИНТЕРАКТИВНАЯ КАРУСЕЛЬ ОТЗЫВОВ) -->
+  <!-- 7. REVIEWS SECTION -->
+  <!-- Desktop: Balanced 2x2 Grid (max-w-5xl) | Mobile: Swipeable Carousel -->
   <!-- ========================================================================= -->
-  <section id="reviews" class="py-24 md:py-36 px-4 md:px-8 max-w-7xl mx-auto border-t border-brand-border/60">
+  <section id="reviews" class="py-20 md:py-28 px-4 md:px-8 max-w-7xl mx-auto border-t border-brand-border/60">
     
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 max-w-5xl mx-auto">
       <div>
         <span class="text-[11px] uppercase tracking-[0.25em] text-brand-bronze font-semibold">
           // Доверие & Обратная связь
@@ -875,29 +878,30 @@
           Что говорят клиенты
         </h2>
         <p class="text-sm text-brand-muted font-light mt-2">
-          Истории основателей брендов, экспертов и девушек, доверивших мне свой образ.
+          <span class="md:hidden">Листайте отзывы свайпом.</span>
+          <span class="hidden md:inline">Истории основателей брендов, экспертов и девушек, доверивших мне свой образ.</span>
         </p>
       </div>
 
-      <!-- Reviews Navigation Buttons -->
-      <div class="flex items-center gap-2">
-        <button onclick="scrollReviewsCarousel(-1)" aria-label="Предыдущий отзыв" class="w-10 h-10 rounded-full bg-brand-surface hover:bg-brand-creme hover:text-brand-black border border-brand-border flex items-center justify-center transition-luxury text-white shadow-md active:scale-95">
-          <i data-lucide="chevron-left" class="w-5 h-5"></i>
+      <!-- Mobile-only Reviews Navigation Buttons -->
+      <div class="flex md:hidden items-center gap-2 shrink-0">
+        <button onclick="scrollReviewsCarousel(-1)" aria-label="Предыдущий отзыв" class="w-9 h-9 rounded-full bg-brand-surface hover:bg-brand-creme hover:text-brand-black border border-brand-border flex items-center justify-center transition-luxury text-white shadow-md active:scale-95">
+          <i data-lucide="chevron-left" class="w-4 h-4"></i>
         </button>
-        <button onclick="scrollReviewsCarousel(1)" aria-label="Следующий отзыв" class="w-10 h-10 rounded-full bg-brand-surface hover:bg-brand-creme hover:text-brand-black border border-brand-border flex items-center justify-center transition-luxury text-white shadow-md active:scale-95">
-          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        <button onclick="scrollReviewsCarousel(1)" aria-label="Следующий отзыв" class="w-9 h-9 rounded-full bg-brand-surface hover:bg-brand-creme hover:text-brand-black border border-brand-border flex items-center justify-center transition-luxury text-white shadow-md active:scale-95">
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
         </button>
       </div>
     </div>
 
-    <!-- Reviews Carousel Track -->
+    <!-- Reviews: Mobile horizontal swipe carousel, Desktop clean 2x2 grid -->
     <div class="relative">
-      <div id="reviewsTrack" class="flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-2 scroll-smooth">
+      <div id="reviewsTrack" class="flex md:grid md:grid-cols-2 gap-6 overflow-x-auto md:overflow-visible scrollbar-none snap-x snap-mandatory py-2 scroll-smooth max-w-5xl mx-auto">
         
         <!-- Review 1 -->
-        <div class="review-card min-w-[85vw] sm:min-w-[360px] md:min-w-[420px] shrink-0 snap-start">
+        <div class="review-card w-[82vw] sm:w-[350px] md:w-auto shrink-0 md:shrink snap-start flex flex-col">
           <div class="double-bezel h-full">
-            <div class="double-bezel-inner p-7 flex flex-col justify-between h-full space-y-6">
+            <div class="double-bezel-inner p-6 sm:p-7 flex flex-col justify-between h-full space-y-6">
               <div class="space-y-4">
                 <div class="flex text-brand-bronze gap-1">
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -911,7 +915,7 @@
                 </p>
               </div>
               <div class="pt-4 border-t border-brand-border/60 flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-brand-surface flex items-center justify-center font-serif text-brand-bronze font-bold">
+                <div class="w-10 h-10 rounded-full bg-brand-surface flex items-center justify-center font-serif text-brand-bronze font-bold text-xs">
                   АК
                 </div>
                 <div>
@@ -924,9 +928,9 @@
         </div>
 
         <!-- Review 2 -->
-        <div class="review-card min-w-[85vw] sm:min-w-[360px] md:min-w-[420px] shrink-0 snap-start">
+        <div class="review-card w-[82vw] sm:w-[350px] md:w-auto shrink-0 md:shrink snap-start flex flex-col">
           <div class="double-bezel h-full">
-            <div class="double-bezel-inner p-7 flex flex-col justify-between h-full space-y-6">
+            <div class="double-bezel-inner p-6 sm:p-7 flex flex-col justify-between h-full space-y-6">
               <div class="space-y-4">
                 <div class="flex text-brand-bronze gap-1">
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -940,7 +944,7 @@
                 </p>
               </div>
               <div class="pt-4 border-t border-brand-border/60 flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-brand-surface flex items-center justify-center font-serif text-brand-bronze font-bold">
+                <div class="w-10 h-10 rounded-full bg-brand-surface flex items-center justify-center font-serif text-brand-bronze font-bold text-xs">
                   ВМ
                 </div>
                 <div>
@@ -953,9 +957,9 @@
         </div>
 
         <!-- Review 3 -->
-        <div class="review-card min-w-[85vw] sm:min-w-[360px] md:min-w-[420px] shrink-0 snap-start">
+        <div class="review-card w-[82vw] sm:w-[350px] md:w-auto shrink-0 md:shrink snap-start flex flex-col">
           <div class="double-bezel h-full">
-            <div class="double-bezel-inner p-7 flex flex-col justify-between h-full space-y-6">
+            <div class="double-bezel-inner p-6 sm:p-7 flex flex-col justify-between h-full space-y-6">
               <div class="space-y-4">
                 <div class="flex text-brand-bronze gap-1">
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -969,7 +973,7 @@
                 </p>
               </div>
               <div class="pt-4 border-t border-brand-border/60 flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-brand-surface flex items-center justify-center font-serif text-brand-bronze font-bold">
+                <div class="w-10 h-10 rounded-full bg-brand-surface flex items-center justify-center font-serif text-brand-bronze font-bold text-xs">
                   ЕС
                 </div>
                 <div>
@@ -982,9 +986,9 @@
         </div>
 
         <!-- Review 4 -->
-        <div class="review-card min-w-[85vw] sm:min-w-[360px] md:min-w-[420px] shrink-0 snap-start">
+        <div class="review-card w-[82vw] sm:w-[350px] md:w-auto shrink-0 md:shrink snap-start flex flex-col">
           <div class="double-bezel h-full">
-            <div class="double-bezel-inner p-7 flex flex-col justify-between h-full space-y-6">
+            <div class="double-bezel-inner p-6 sm:p-7 flex flex-col justify-between h-full space-y-6">
               <div class="space-y-4">
                 <div class="flex text-brand-bronze gap-1">
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -998,7 +1002,7 @@
                 </p>
               </div>
               <div class="pt-4 border-t border-brand-border/60 flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-brand-surface flex items-center justify-center font-serif text-brand-bronze font-bold">
+                <div class="w-10 h-10 rounded-full bg-brand-surface flex items-center justify-center font-serif text-brand-bronze font-bold text-xs">
                   ДК
                 </div>
                 <div>
@@ -1012,13 +1016,13 @@
 
       </div>
 
-      <!-- Carousel Hint & Counter -->
-      <div class="flex items-center justify-between mt-5 text-xs text-brand-muted">
+      <!-- Mobile-only Carousel Hint -->
+      <div class="flex md:hidden items-center justify-between mt-4 text-xs text-brand-muted max-w-5xl mx-auto">
         <div class="flex items-center gap-2">
           <i data-lucide="move-horizontal" class="w-4 h-4 text-brand-bronze"></i>
-          <span>Листайте отзывы свайпом или кнопками</span>
+          <span>Свайпайте вбок, чтобы листать отзывы</span>
         </div>
-        <span class="text-[11px] text-brand-bronze font-medium">4 отзыва клиентов</span>
+        <span class="text-[11px] text-brand-bronze font-medium">4 отзыва</span>
       </div>
     </div>
 
@@ -1223,30 +1227,30 @@
   </footer>
 
   <!-- ========================================================================= -->
-  <!-- 11. INTERACTIVE LIGHTBOX MODAL (МОБИЛЬНЫЙ ФИКС: НИКАКИХ НАЛОЖЕНИЙ) -->
+  <!-- 11. INTERACTIVE LIGHTBOX MODAL (КОМПАКТНЫЙ МАСШТАБ, БЕЗ НАЛОЖЕНИЙ) -->
   <!-- ========================================================================= -->
-  <div id="lightboxModal" class="fixed inset-0 z-50 bg-brand-black/95 backdrop-blur-2xl flex items-center justify-center p-2 sm:p-4 md:p-8 opacity-0 pointer-events-none transition-luxury" onclick="closeLightboxOnBackdrop(event)">
-    <div class="relative max-w-5xl w-full max-h-[92vh] bg-brand-card border border-brand-border rounded-3xl shadow-2xl flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden scrollbar-none">
+  <div id="lightboxModal" class="fixed inset-0 z-50 bg-brand-black/95 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-5 md:p-8 opacity-0 pointer-events-none transition-luxury" onclick="closeLightboxOnBackdrop(event)">
+    <div class="relative max-w-4xl w-full max-h-[88vh] bg-brand-card border border-brand-border rounded-3xl shadow-2xl flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden scrollbar-none my-auto">
       
       <!-- Close Button (Always visible on mobile & desktop) -->
-      <button onclick="closeLightbox()" aria-label="Закрыть" class="absolute top-3 right-3 z-30 w-10 h-10 rounded-full bg-brand-black/80 hover:bg-black backdrop-blur-md border border-white/15 flex items-center justify-center text-white transition-luxury shadow-xl hover:scale-105 active:scale-95">
-        <i data-lucide="x" class="w-5 h-5"></i>
+      <button onclick="closeLightbox()" aria-label="Закрыть" class="absolute top-3 right-3 z-30 w-9 h-9 rounded-full bg-brand-black/80 hover:bg-black backdrop-blur-md border border-white/15 flex items-center justify-center text-white transition-luxury shadow-xl hover:scale-105 active:scale-95">
+        <i data-lucide="x" class="w-4 h-4"></i>
       </button>
 
       <!-- Image Column: Strictly bounded height on mobile, NEVER overlaps text below -->
-      <div class="w-full lg:w-7/12 bg-black/90 flex items-center justify-center relative h-[38vh] sm:h-[45vh] lg:h-[580px] shrink-0 select-none overflow-hidden">
+      <div class="w-full lg:w-3/5 bg-black/90 flex items-center justify-center relative h-[38vh] sm:h-[44vh] lg:h-[480px] shrink-0 select-none overflow-hidden">
         
         <!-- Prev Button -->
-        <button onclick="prevPhoto(event)" aria-label="Предыдущее фото" class="absolute left-2.5 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-brand-black/70 hover:bg-brand-black/95 backdrop-blur-md border border-white/15 flex items-center justify-center text-white transition-luxury hover:scale-110 active:scale-90 shadow-lg">
-          <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        <button onclick="prevPhoto(event)" aria-label="Предыдущее фото" class="absolute left-2.5 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-black/70 hover:bg-brand-black/95 backdrop-blur-md border border-white/15 flex items-center justify-center text-white transition-luxury hover:scale-110 active:scale-90 shadow-lg">
+          <i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
         </button>
 
         <!-- Main Lightbox Image (Cleanly fitted) -->
         <img id="lightboxImg" src="" alt="Фото съёмки" class="w-full h-full object-contain p-2 sm:p-4 transition-opacity duration-300 select-none">
 
         <!-- Next Button -->
-        <button onclick="nextPhoto(event)" aria-label="Следующее фото" class="absolute right-2.5 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-brand-black/70 hover:bg-brand-black/95 backdrop-blur-md border border-white/15 flex items-center justify-center text-white transition-luxury hover:scale-110 active:scale-90 shadow-lg">
-          <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        <button onclick="nextPhoto(event)" aria-label="Следующее фото" class="absolute right-2.5 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-black/70 hover:bg-brand-black/95 backdrop-blur-md border border-white/15 flex items-center justify-center text-white transition-luxury hover:scale-110 active:scale-90 shadow-lg">
+          <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
         </button>
 
         <!-- Photo Counter Badge & Thumbnail Dots -->
@@ -1260,8 +1264,8 @@
       </div>
 
       <!-- Info Column: Positioned cleanly below photo on mobile with its own natural padding -->
-      <div class="w-full lg:w-5/12 p-5 sm:p-6 lg:p-8 flex flex-col justify-between bg-brand-card shrink-0 lg:shrink space-y-6">
-        <div class="space-y-3.5">
+      <div class="w-full lg:w-2/5 p-5 sm:p-6 lg:p-7 flex flex-col justify-between bg-brand-card shrink-0 lg:shrink space-y-5 overflow-y-auto">
+        <div class="space-y-3">
           <div class="flex items-center justify-between">
             <span id="lightboxCategory" class="text-[10px] uppercase tracking-widest text-brand-bronze font-semibold">
               Категория
@@ -1272,7 +1276,7 @@
           </div>
 
           <!-- Clean headline with proper line-height so it never clips -->
-          <h3 id="lightboxTitle" class="font-serif text-xl sm:text-2xl lg:text-3xl text-white font-normal leading-snug">
+          <h3 id="lightboxTitle" class="font-serif text-xl sm:text-2xl text-white font-normal leading-snug">
             Название съёмки
           </h3>
           
@@ -1284,7 +1288,7 @@
 
           <div class="pt-1 flex items-center gap-2 text-[11px] text-brand-muted">
             <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-brand-bronze shrink-0"></i>
-            <span>Листайте стрелками или свайпом влево/вправо</span>
+            <span>Листайте стрелками или свайпом</span>
           </div>
         </div>
 
@@ -1466,10 +1470,8 @@
         const cardCat = card.getAttribute('data-category');
         if (category === 'all' || cardCat === category) {
           card.classList.remove('hidden');
-          card.classList.add('flex');
         } else {
           card.classList.add('hidden');
-          card.classList.remove('flex');
         }
       });
 
